@@ -1,5 +1,5 @@
 process DISSIMILARITY_MATRIX {
-    publishDir "$params.outdir", pattern: "dissimilarity.tsv", mode: "copy", failOnError: true
+    publishDir "$params.outdir", pattern: "dissimilarity.*", mode: "copy", failOnError: true
     publishDir "$params.logsdir", pattern: "DISSIMILARITY.log", mode: "copy", failOnError: true
   
     input:
@@ -7,7 +7,8 @@ process DISSIMILARITY_MATRIX {
     val params.outdir 
     
     output:
-    path "dissimilarity.tsv", emit: dissimilarity_ch
+    path "dissimilarity.tsv"
+    path "dissimilarity.rds", emit: dissimilarity_ch
     
 
     script:

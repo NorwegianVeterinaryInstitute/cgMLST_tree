@@ -1,4 +1,5 @@
-# Computes the dissimilarity matrix distances 
+# Computes the dissimilarity matrix distances - export as tsv
+# export also rds for doing the clustering
 # setup 
 library("pacman")
 p_load(tidyverse, cluster)
@@ -24,9 +25,10 @@ message("computing dissimilarity matrix with function: compute_dissimilarity_mat
 
 
 dissimilarity <- daisy(df, metric = "gower")
+saveRDS(dissimilarity, "dissimilarity.rds")
+
+
 df <- 
   as.data.frame(as.matrix(dissimilarity), make.names = T) %>% 
   rownames_to_column(var = "FILE") 
-
-
 write_tsv(df, output)
