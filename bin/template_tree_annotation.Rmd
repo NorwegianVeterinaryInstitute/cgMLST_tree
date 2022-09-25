@@ -1,0 +1,114 @@
+---
+title: "cgMLST phylogenetic tree."
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+author: "`r params$author`"
+
+params:
+  tree: tree.nwk
+  method : nj
+  data : data
+  author: Eve Zeyl Fiskebeck
+  
+
+output: 
+  prettydoc::html_pretty: 
+  theme: cayman
+  highlight: github
+  author: params$author
+  
+---
+
+<!-- note that the parameters above are defaults
+The parameters provided while creating the report are provided by 
+script run.sh at execution.
+If you want to recompile the markdown file you can do that by 
+modifying the text in the markdown (as a template)
+and relaunching script (or copying the parameters above)
+--> 
+
+<!-- PREPARATION OF REPORT -->
+```{r, setup, include=FALSE}
+# knitr must be installed 
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager", dependencies = T)
+if (!requireNamespace("ggtree", quietly = TRUE)) BiocManager::install("ggtree")
+if (!requireNamespace("pacman", quietly = TRUE)) install.packages("pacman", dependencies = T)
+library(pacman)
+p_load(tidyverse, ggtree, treeio, ape, ggplot2)
+# ggnewscale , Cairo
+```
+
+
+```{r, import tree, include=FALSE }
+tree <- ape::read.tree(params$tree)
+
+is_rooted <- 
+  if (!is.rooted(tree)) {print("The tree is not rooted.")
+  } else {print("The tree is rooted.")}
+```
+
+`r is_rooted`
+
+
+```{r number of isolates, include=FALSE }
+high_scale <- length(tree$tip.label)
+```
+
+If you have many isolates it is likely that the plot labels will not display correctly 
+you will have to adjust the parameters.
+
+You can also link metadata to annotate your tree. 
+
+Please look at [the reference ggtree book](https://yulab-smu.top/treedata-book/)
+and have a look at our [tutorials](https://nvi-documentation.readthedocs.io/en/latest/index.html).
+PS: check in the github repo
+
+```{r, tree plot, echo=FALSE}
+# you will need to adapts those output, no automatic way 
+# if you have many isolates use a cicular plot 
+if (high_scale <= 300 ) {
+  tree_plot <- 
+  ggtree::ggtree(tree, 
+                 layout = "rectangular", 
+                 ladderize = T, 
+                 lwd = .1) + 
+  geom_tiplab(aes(label = label), size = 1) +
+  geom_tippoint()  +
+  ggtitle(paste0(params$method," cgMLST based phylogenetic tree")) +
+  geom_treescale(fontsize = 1)  
+} else {
+  tree_plot <- 
+    ggtree::ggtree(tree, 
+                 layout = "circular", 
+                 ladderize = T, 
+                 lwd = .05) +
+    geom_tiplab2(aes(label = label), size = 0.5) +
+    geom_tippoint() +
+    ggtitle(paste0(params$method," cgMLST based phylogenetic tree")) +
+    geom_treescale(fontsize = 0.05)  
+}
+
+```
+
+You might stubble upon warning message: eg. distance < 0. This can happen when distances are really small and eg for bayesian trees.
+
+```{r echo=FALSE}
+tree_plot
+```
+
+
+```{r, saving the plot, include=FALSE}
+ggsave(filename = "tree_plot.png",
+       plot = tree_plot, 
+       units = "cm",
+       dpi = 600, 
+       width = 18, 
+       heigh = 28,
+       type = "cairo")
+```
+
+
+Parameters used in the analysis: 
+
+  - tree: `r params$tree`
+  - method : `r params$method`
+  - data : `r str_remove(params$data, "^.*/")`

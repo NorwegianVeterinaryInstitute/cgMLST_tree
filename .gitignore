@@ -1,3 +1,5 @@
 *.tsv
 *.dia~
 *.code-workspace
+*.html
+*.png

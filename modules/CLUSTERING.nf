@@ -8,7 +8,7 @@ process CLUSTERING {
     val params.outdir 
     
     output:
-    path "tree.nwk"
+    path "tree.nwk", emit: clustering_ch
     
 
     script:
