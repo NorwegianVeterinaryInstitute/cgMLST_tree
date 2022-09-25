@@ -50,4 +50,5 @@ nextflow run ${NFSCRIPT} -c ${CONFIG} -c ${USERCONFIG} -profile local
 - R: packages
     - pacman 
     - tidyverse
-    - cultevo
+    - cultevo (compute hamming distances)
+    - cluster (computing dissimilarity matrix)
