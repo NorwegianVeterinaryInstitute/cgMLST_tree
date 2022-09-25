@@ -13,6 +13,6 @@ process HAMMING_DISTANCE {
 
     script:
     """
-    Rscript ${params.script_dir}/hamming.R input.tsv hamming_distances.tsv &> FILTER_MISSING.log
+    Rscript ${params.script_dir}/hamming.R input.tsv hamming_distances.tsv &> HAMMING.log
     """
 }
