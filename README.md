@@ -41,3 +41,13 @@ CONFIG="${FOLDER}/fedora.config.nf" # processes and profiles and specific pc/clu
 nextflow run ${NFSCRIPT} -c ${CONFIG} -c ${USERCONFIG} -profile local 
 
 ```
+
+
+# Requirements
+- nextflow : (DLS2 activated) 
+    - nextflowVersion = "22.04.5"
+
+- R: packages
+    - pacman 
+    - tidyverse
+    - cultevo

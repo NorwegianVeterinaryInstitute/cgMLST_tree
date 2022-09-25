@@ -15,6 +15,10 @@ input <- args[1]
 maxmissing <- args[2]
 output <- args[3]
 
+# TEST 
+# input <- "clean_results_alleles.tsv"
+# maxmissing <- "NULL"
+# output <- "filtered_results_alleles.tsv"
 
 # import cleaned data
 df <- read_tsv(input, col_types = cols(.default = "c"))
@@ -35,16 +39,26 @@ df %>%
   mutate(`total loci` = nbloci) %>%
   mutate(`% missing` = `missing loci` / `total loci` *100) %>%
   select(`missing loci`, `% missing`, `present loci`, `total loci`) %>%
-  write_tsv(., "statistics_missing_loci")
+  write_tsv(., "statistics_missing_loci.tsv")
   
 # filtering out missing loci 
 message("filtering data with more than ", maxmissing, " loci missing")
 
-df %>% 
-  mutate_at(vars(-any_of("FILE")), as.factor) %>% # ensure correct format
-  rowwise() %>%
-  mutate(NA_count = sum(is.na(c_across(where(is.factor))))) %>%
-  group_by(FILE) %>% 
-  filter(NA_count < maxmissing) %>%
-  select(-NA_count) %>%
-  write_tsv(., output)
+if ( maxmissing == "NULL" ){
+  # case where data already filtered
+  # have to have "NULL" as imported as string
+  df %>%
+    write_tsv(., output)  
+} else {
+  # filter isolates NA_count <= maxmissing
+  df %>%
+    mutate_at(vars(-any_of("FILE")), as.factor) %>% # ensure correct format
+    rowwise() %>%
+    mutate(NA_count = sum(is.na(c_across(where(is.factor))))) %>%
+    group_by(FILE) %>%
+    filter(NA_count <= as.numeric(maxmissing)) %>%
+    select(-NA_count) %>%
+    write_tsv(., output)  
+}
+
+message("if error, please recheck how many loci you decided to allow as missing")
