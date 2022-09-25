@@ -4,7 +4,7 @@ process FILTER_MISSING {
   
     input:
     path 'input.tsv' 
-    val params.maxmissing
+    val maxmissing
     val params.outdir 
     
     output:
@@ -13,6 +13,6 @@ process FILTER_MISSING {
 
     script:
     """
-    Rscript ${params.script_dir}/filter_missing.R input.tsv $params.maxmissing filtered_results_alleles.tsv &> FILTER_MISSING.log
+    Rscript ${params.script_dir}/filter_missing.R input.tsv $maxmissing filtered_results_alleles.tsv &> FILTER_MISSING.log
     """
 }
