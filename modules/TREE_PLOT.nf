@@ -25,7 +25,7 @@ process TREE_PLOT {
                     tree = 'tree.nwk',
                     method = '"$params.method"',
                     data = '"$params.raw_results"', 
-                    author = '"$params.author_report"', 
+                    author = '"$params.author"' 
                     )
                 )"'"' | tr -d '\n' | tr -d ' ' >>  run.sh
     bash run.sh
