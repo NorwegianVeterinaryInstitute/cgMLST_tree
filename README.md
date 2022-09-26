@@ -59,6 +59,10 @@ nextflow run ${NFSCRIPT} -c ${CONFIG} -c ${USERCONFIG} -profile local
     - cultevo (compute hamming distances)
     - cluster (computing dissimilarity matrix)
     - ape 
+    - ggtree
+    - treeio
+    - ggplot2
+    - Cairo
 OR 
 - singularity (image where R packages are integrated)
     - #todo

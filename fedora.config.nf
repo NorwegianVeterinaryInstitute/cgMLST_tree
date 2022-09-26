@@ -3,9 +3,11 @@
 
 //Fedora specific variables
 //this is to avoid contant sync
-launchDir="$HOME/Documents/TEST/cgMLST_tree"
 projectDir="$HOME/Documents/onedrive_sync/ONE_OBSIDIAN/GITS_WORK/cgMLST_tree"
-
+workDir = "$HOME/Documents/NF_WORK/cgMLST"
+launchDir="$HOME/Documents/NF_TEST/cgMLST"
+singularity.libraryDir="$HOME/Documents/NF_LIBRARY" 
+singularity.cacheDir="$HOME/Documents/NF_LIBRARY" 
 
 // parameters (the other above need to find if better way)
 params {
@@ -25,20 +27,44 @@ params {
 }
 
 //process definitions
+
 process {
-  /* 
-    withName: CLEAN_LABELS {
-        container = ""
+	withName: CLEAN_LABELS {
+        container = "evezeyl/r_cgmlst_tools"
         cpus = 2
     }
-	*/
+	
+	withName: FILTER_MISSING {
+        container = "evezeyl/r_cgmlst_tools"
+        cpus = 2
+    }
 
-    
+	withName: HAMMING_DISTANCE {
+        container = "evezeyl/r_cgmlst_tools"
+        cpus = 4
+    }
+
+	withName: DISSIMILARITY_MATRIX {
+        container = "evezeyl/r_cgmlst_tools"
+        cpus = 2
+    }
+
+	withName: CLUSTERING {
+        container = "evezeyl/r_cgmlst_tools"
+        cpus = 2
+    }
+
+    withName: TREE_PLOT {
+        container = "evezeyl/r_cgmlst_tools"
+        cpus = 2
+    }   
 }
+
+
 // environment variables
 // https://www.nextflow.io/docs/latest/config.html#config-variables
+/*
 env {
-	// NF config 
 	NXF_VER="22.04.5"
 	NXF_HOME="$HOME/.nextflow"
 	// those do not appear to be exported
@@ -48,12 +74,10 @@ env {
 	NXF_PARAMS_FILE="$HOME/Documents/onedrive_sync/ONE_OBSIDIAN/GITS_WORK/cgMLST_tree/user.config.nf"
 
 	// SOFTWARE 
-	NXF_SINGULARITY_LIBRARYDIR="$HOME/Documents/onedrive_sync/ONE_OBSIDIAN/Projects/SAV/SAV_amplicon_seq/article/nextflow/library" 
-	NXF_SINGULARITY_CACHEDIR="$HOME/Documents/onedrive_sync/ONE_OBSIDIAN/Projects/SAV/SAV_amplicon_seq/article/nextflow/library" 
-	
-	//NXF_CONDA_CACHEDIR
-	
+	NXF_SINGULARITY_LIBRARYDIR="$HOME/Documents/TEST/cgMLST_tree/library" 
+	NXF_SINGULARITY_CACHEDIR="$HOME/Documents/TEST/cgMLST_tree/library" 
 }
+*/
 
 // Profiles
 profiles {
