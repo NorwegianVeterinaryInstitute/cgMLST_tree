@@ -26,7 +26,7 @@ RUN apt-get update && apt-get -y install r-base r-base-dev  \
 
 # In case - REMOVE if not needed
 RUN R --slave -e 'install.packages("pacman", dependencies = TRUE)'
-RUN R --slave -e 'library(pacman); p_load(knitr, kableExtra, cultevo)' 
+RUN R --slave -e 'library(pacman); p_load(knitr, kableExtra, cultevo, prettydoc)' 
 RUN R --slave -e 'install.packages("BiocManager", dependencies = TRUE); BiocManager::install("ggtree"); BiocManager::install("treeio")' 
 
 # Install ps to allow nextflow to collect task metrics

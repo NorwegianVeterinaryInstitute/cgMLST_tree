@@ -63,7 +63,12 @@ nextflow run ${NFSCRIPT} -c ${CONFIG} -c ${USERCONFIG} -profile local
     - treeio
     - ggplot2
     - Cairo
+    - prettydoc
 OR 
-- singularity (image where R packages are integrated)
-    - #todo
+-docker/singularity (image where R packages are integrated)
+    - dockerfile for image build is provided in `containers/r_cgmlst_tools` 
+    or can be pulled from dockerhub: `evezeyl/r_cgmlst_tools:latest`
+
 -------------------
+
+singularity shell /home/vi2067/Documents/NF_LIBRARY/evezeyl-r_cgmlst_tools.img 
