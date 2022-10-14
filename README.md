@@ -1,5 +1,8 @@
 # cgMLST_tree
 
+! This is a work in progress (freetime)
+? integrate with Alppaca (discussed with Håkon)
+
 version: 1.0.0 - functionning locally 
 
 
