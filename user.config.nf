@@ -1,6 +1,6 @@
 params {
     // chewbbaca input - scheme must have been prepared 
-    assemblies_dir = ""
+    assemblies_dir =  ""
     schema_dir = ""
 
     // Cleaning alleles and making post cgMLST typing analyses 

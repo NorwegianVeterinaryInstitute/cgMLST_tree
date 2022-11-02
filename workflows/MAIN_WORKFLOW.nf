@@ -9,14 +9,14 @@ include { TREE_PLOT } from "${params.module_dir}/TREE_PLOT.nf"
 
 workflow MAIN_WORKFLOW {
 
-    //chewBBACA_ch=Channel.fromPath(params.raw_results, checkIfExists:true)
     assemblies_ch=Channel.fromPath(params.assemblies_dir, checkIfExists:true)
-
-    CHEWBBACA (assemblies_ch.out, params.schema_dir, params.outdir)
-    CLEAN_LABELS (chewBBACA.out.typing_ch, params.outdir)
+    
+    CHEWBBACA(assemblies_ch, params.schema_dir, params.outdir)
+    CLEAN_LABELS (CHEWBBACA.out.typing_ch, params.outdir)
     FILTER_MISSING (CLEAN_LABELS.out.clean_labels_ch, params.maxmissing, params.outdir)
     HAMMING_DISTANCE(FILTER_MISSING.out.filter_missing_ch, params.outdir)
     DISSIMILARITY_MATRIX(CLEAN_LABELS.out.clean_labels_ch, params.outdir)
     CLUSTERING(DISSIMILARITY_MATRIX.out.dissimilarity_ch, params.method, params.outdir)
     TREE_PLOT(CLUSTERING.out.clustering_ch, params.outdir)
+    
 }
