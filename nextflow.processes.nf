@@ -1,14 +1,10 @@
 // nextflow processes definition
 process {
 
-    /*	
     withName: CHEWBBACA {
-        conda '/home/evezeyl/anaconda3/envs/chewbbaca'
-        //container = "evezeyl/r_cgmlst_tools"
-        //cpus = 2
+        container = "evezeyl/chewbbaca"
+        cpus = 6
     }
-    */
-		
     
 	withName: CLEAN_LABELS {
         container = "evezeyl/r_cgmlst_tools"

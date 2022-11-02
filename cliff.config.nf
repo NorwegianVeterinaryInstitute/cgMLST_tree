@@ -28,7 +28,7 @@ params {
 
 //process definitions
 // include specific config
-includeConfig './cliff.nextflow.processes.nf' 
+includeConfig './nextflow.processes.nf' 
 
 // environment variables
 // https://www.nextflow.io/docs/latest/config.html#config-variables
