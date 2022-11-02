@@ -1,6 +1,17 @@
+#!/usr/bin/env Rscript
 # Author Eve Zeyl Fiskebeck
 # evfi@vetinst.np
 # Date review: 2022-11-02
+
+# Added possibility to add libpaths
+choice_libpaths <- menu(c("yes", "no"), 
+                    title = "Do you want to provide the paths of your R library?. 
+                    PS: required for working on SAGA, see: https://documentation.sigma2.no/software/userinstallsw/R.html"
+                    )
+if (as.character(choice_libpaths) == "1") {
+  mylib_path <- readline(prompt ="Please provide your user libpath directory.") 
+  .libPaths(c(mylib_path, .libPaths()))
+}     
 
 # Packages setup 
 if (!require("pacman")) {install.packages("pacman", dependencies = T)}
