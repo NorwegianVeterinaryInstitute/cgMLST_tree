@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y apt-utils build-essential zlib1g-dev \
 RUN apt-get -y install dirmngr gnupg apt-transport-https ca-certificates software-properties-common
 RUN apt-get -y install python3 python3-pip
 
+# Install BLAST - PRODIGAL - MAFFT
+RUN apt-get update && apt-get -y install ncbi-blast+ prodigal mafft
+
 # ChewBBACA Install - and packages 
 RUN pip3 install chewbbaca
 

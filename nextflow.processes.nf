@@ -3,7 +3,7 @@ process {
 
     withName: CHEWBBACA {
         container = "evezeyl/chewbbaca"
-        cpus = 6
+        cpus = 4
     }
     
 	withName: CLEAN_LABELS {
