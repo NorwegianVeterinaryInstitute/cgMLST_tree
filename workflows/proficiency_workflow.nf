@@ -1,15 +1,17 @@
 // Workflows for Lm proficiency test
-include { KRAKEN2 } from ".modules/modules.nf"
-include { FASTQC } from ".modules/modules.nf"
-include { MULTIQC } from ".modules/modules.nf"
-include { CONFINDR } from ".modules/modules.nf"
-include { SHOWVILL } from ".modules/modules.nf"
-include { QUAST } from ".modules/modules.nf"
-include { MAPPING } from ".modules/modules.nf"
-include { QUALIMAP } from ".modules/modules.nf"
-include { CHECKM } from ".modules/modules.nf"
-include { MLST } from ".modules/modules.nf"
-include { SEROMLST } from ".modules/modules.nf"
+include { KRAKEN2 } from "../modules/proficiency_modules.nf"
+/*
+include { FASTQC } from "../modules/proficiency_modules.nf"
+include { MULTIQC } from "../modules/proficiency_modules.nf"
+include { CONFINDR } from "../modules/proficiency_modules.nf"
+include { SHOWVILL } from "../modules/proficiency_modules.nf"
+include { QUAST } from "../modules/proficiency_modules.nf"
+include { MAPPING } from "../modules/proficiency_modules.nf"
+include { QUALIMAP } from "../modules/proficiency_modules.nf"
+include { CHECKM } from "../modules/proficiency_modules.nf"
+include { MLST } from "../modules/proficiency_modules.nf"
+include { SEROMLST } from "../modules/proficiency_modules.nf"
+*/
 
 workflow PROFICIENCY_WORKFLOW {
   

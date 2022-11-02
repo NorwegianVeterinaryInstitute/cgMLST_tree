@@ -1,10 +1,11 @@
 
+
 // Activate dsl2
 // Simplifed from Håkon
 nextflow.enable.dsl=2
 
 // Define workflows
-include { PROFICIENCY_WORKFLOW } from ".workflows/proficiency.nf"
+include { PROFICIENCY_WORKFLOW } from "./workflows/proficiency_workflow.nf"
 
 workflow.onComplete {
 	log.info "".center(74, "=")

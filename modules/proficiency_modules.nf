@@ -23,6 +23,7 @@ process KRAKEN2 {
 
 }
 
+/*
 process FASTQC {
     publishDir "${params.outdir}/11_FASTQC", pattern: "*", mode: "copy", overwrite: false
  
@@ -67,7 +68,7 @@ process CONFINDR {
     publishDir "${params.outdir}/13_CONFINDR", pattern: "*", mode: "copy", overwrite: false
 
     input:
-    tuple val(ID), path(reads)     ? pair path 
+    tuple val(ID), path(reads)     
     path confinderDB 
     val params.outdir
 
@@ -81,8 +82,6 @@ process CONFINDR {
     #/Listeria_db_cgderived.fasta
 
     """
-
-
 }
 
 // ASSEMBLY 
@@ -145,7 +144,6 @@ process CHECKM {
     """
     checkm data setRoot checkmDB
     checkm qa markerfile .
-    
     """
 }
 
@@ -165,21 +163,19 @@ process MAPPING {
     script:
     """
     bwa index reference
-    bwa mem reference $R1_read $R2_read  | samtools sort -o PE_out -
-    bwa mem reference $U_read  | samtools sort -o U_out -
+    bwa mem reference R1_read R2_read  | samtools sort -o PE_out -
+    bwa mem reference U_read  | samtools sort -o U_out -
 
     samtools merge merged PE_out U_out
     samtools sort -o final merged
     samtools index final
 
-    
     rm PE_out
     rm U_out
     rm merged
     """
+    }
 
-
-}
 
 
 process QUALIMAP {
@@ -246,13 +242,6 @@ process SEROMLST {
 
 }
 
-
-
-
-
-
-
-
-
 // Docker 
 docker pull staphb/shovill:latest
+*/
