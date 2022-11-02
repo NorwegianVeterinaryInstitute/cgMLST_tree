@@ -17,7 +17,7 @@ if (as.character(choice_libpaths) == "1") {
 if (!require("pacman")) {install.packages("pacman", dependencies = T)}
 if (!require("httr")) {install.packages("httr", dependencies = T) }
 if (!require("jsonlite")) {install.packages("jsonlite", dependencies = T)}
-p_load(httr, jsonlite, tidyverse, log4r)
+p_load(httr, jsonlite, tidyverse, curl, log4r)
 ################################################################################
 # USER INFORMATION - CHOICES ----
 ## User defines outdir 
