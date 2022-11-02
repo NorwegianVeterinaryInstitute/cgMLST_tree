@@ -3,11 +3,11 @@
 
 //Fedora specific variables
 //this is to avoid contant sync
-projectDir="$HOME/Documents/onedrive_sync/ONE_OBSIDIAN/GITS_WORK/cgMLST_tree"
-workDir = "$HOME/Documents/NF_WORK/cgMLST"
-launchDir="$HOME/Documents/NF_TEST/cgMLST"
-singularity.libraryDir="$HOME/Documents/NF_LIBRARY" 
-singularity.cacheDir="$HOME/Documents/NF_LIBRARY" 
+projectDir="/mnt/2T/Insync/ONEDRIVE/ONE_OBSIDIAN/GITS_WORK/cgMLST_tree"
+workDir = "/mnt/2T/NF_WORK/cgMLST"
+launchDir="/mnt/2T/NF_TEST/cgMLST"
+singularity.libraryDir="/mnt/2T/NF_LIBRARY" 
+singularity.cacheDir="/mnt/2T/NF_LIBRARY" 
 
 // parameters (the other above need to find if better way)
 params {
@@ -28,7 +28,7 @@ params {
 
 //process definitions
 // include specific config
-includeConfig './nextflow.processes.nf' 
+includeConfig './cliff.nextflow.processes.nf' 
 
 // environment variables
 // https://www.nextflow.io/docs/latest/config.html#config-variables
