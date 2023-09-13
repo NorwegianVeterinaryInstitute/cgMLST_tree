@@ -1,5 +1,10 @@
 # cgMLST_tree
 
+This work is now integrated into https://github.com/NorwegianVeterinaryInstitute/ALPPACA cgMLST track.
+Thus we archive this repository
+
+
+
 ! This is a work in progress (freetime) and work
 ? integrate with Alppaca (discussed with Håkon)
 
